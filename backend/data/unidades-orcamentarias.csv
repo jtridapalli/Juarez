@@ -1,0 +1,61 @@
+codigo;sigla;nome;orgao
+0100.0101;ALEP;Assembleia Legislativa do Estado do Parana;0100
+0200.0201;TCE-PR;Tribunal de Contas do Estado do Parana;0200
+0300.0301;TJPR;Tribunal de Justica do Estado do Parana;0300
+0300.0302;FUNREJUS;Fundo de Reequipamento do Poder Judiciario;0300
+0400.0401;MPPR;Ministerio Publico do Estado do Parana;0400
+0500.0501;DPPR;Defensoria Publica do Estado do Parana;0500
+1000.1001;CC;Casa Civil;1000
+1000.1002;IPARDES;Instituto Paranaense de Desenvolvimento Economico e Social;1000
+1100.1101;CME;Casa Militar e Coordenadoria de Protecao e Defesa Civil;1100
+1200.1201;CGE;Controladoria Geral do Estado;1200
+1300.1301;PGE;Procuradoria Geral do Estado;1300
+2000.2001;SEPL;Secretaria de Estado do Planejamento;2000
+2100.2101;SEFA;Secretaria de Estado da Fazenda;2100
+2100.2102;FOMENTO;Agencia de Fomento do Parana S.A.;2100
+2200.2201;SEAP;Secretaria de Estado da Administracao e da Previdencia;2200
+2200.2202;PRPREV;Paranaprevidencia - Servico Social Autonomo;2200
+2200.2203;FUNPREV;Fundo Estadual de Previdencia;2200
+3000.3001;SESA;Secretaria de Estado da Saude;3000
+3000.3002;FUNSAUDE;Fundo Estadual de Saude;3000
+3000.3003;CEHOSP;Centro de Medicamentos e Hospitais Estaduais;3000
+4000.4001;SEED;Secretaria de Estado da Educacao;4000
+4000.4002;FUNDEPAR;Instituto Paranaense de Desenvolvimento Educacional;4000
+4000.4003;FUNDEB-PR;Fundo Estadual de Manutencao e Desenvolvimento da Educacao Basica;4000
+4100.4101;SETI;Secretaria de Estado da Ciencia, Tecnologia e Ensino Superior;4100
+4100.4102;UEL;Universidade Estadual de Londrina;4100
+4100.4103;UEM;Universidade Estadual de Maringa;4100
+4100.4104;UEPG;Universidade Estadual de Ponta Grossa;4100
+4100.4105;UNICENTRO;Universidade Estadual do Centro-Oeste;4100
+4100.4106;UNIOESTE;Universidade Estadual do Oeste do Parana;4100
+4100.4107;UNESPAR;Universidade Estadual do Parana;4100
+4100.4108;UENP;Universidade Estadual do Norte do Parana;4100
+4100.4109;TECPAR;Instituto de Tecnologia do Parana;4100
+4100.4110;FA-PR;Fundo Paranaense de Ciencia e Tecnologia;4100
+5000.5001;SESP;Secretaria de Estado da Seguranca Publica;5000
+5000.5002;PMPR;Policia Militar do Parana;5000
+5000.5003;PCPR;Policia Civil do Parana;5000
+5000.5004;PCP;Policia Cientifica do Parana;5000
+5000.5005;CBMPR;Corpo de Bombeiros Militar do Parana;5000
+5000.5006;DETRAN;Departamento de Transito do Parana;5000
+5100.5101;SEJU;Secretaria de Estado da Justica e Cidadania;5100
+5100.5102;DEPEN;Departamento Penitenciario do Parana;5100
+6000.6001;SEIL;Secretaria de Estado da Infraestrutura e Logistica;6000
+6000.6002;DER;Departamento de Estradas de Rodagem;6000
+6100.6101;SECID;Secretaria de Estado das Cidades;6100
+6100.6102;COHAPAR;Companhia de Habitacao do Parana;6100
+7000.7001;SEAB;Secretaria de Estado da Agricultura e do Abastecimento;7000
+7000.7002;ADAPAR;Agencia de Defesa Agropecuaria do Parana;7000
+7000.7003;IDR-PR;Instituto de Desenvolvimento Rural do Parana;7000
+7100.7101;SEDEST;Secretaria de Estado do Desenvolvimento Sustentavel;7100
+7100.7102;IAT;Instituto Agua e Terra;7100
+7100.7103;FEMA;Fundo Estadual do Meio Ambiente;7100
+7200.7201;SEIC;Secretaria de Estado da Industria, Comercio e Servicos;7200
+7300.7301;SEET;Secretaria de Estado do Esporte e do Turismo;7300
+7400.7401;SECC;Secretaria de Estado da Comunicacao Social e da Cultura;7400
+7500.7501;SEDEF;Secretaria de Estado do Desenvolvimento Social e Familia;7500
+7500.7502;FEAS;Fundo Estadual de Assistencia Social;7500
+7600.7601;SEI;Secretaria de Estado da Inovacao, Modernizacao e Transformacao Digital;7600
+7600.7602;CELEPAR;Companhia de Tecnologia da Informacao e Comunicacao do Parana;7600
+8000.8001;EGE;Encargos Gerais do Estado - Recursos sob Supervisao da SEFA;8000
+8000.8002;RESCON;Reserva de Contingencia;8000

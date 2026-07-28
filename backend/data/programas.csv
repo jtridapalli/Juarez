@@ -1,0 +1,24 @@
+codigo;nome;tipo;objetivo;publicoAlvo
+0001;Reserva de Contingencia;ESPECIAL;Atender passivos contingentes e outros riscos fiscais imprevistos, conforme art. 5o, III, da LC 101/2000;Administracao Publica Estadual
+0100;Apoio Administrativo;GESTAO;Assegurar as condicoes administrativas, de pessoal e de infraestrutura necessarias ao funcionamento dos orgaos e entidades estaduais;Servidores e orgaos do Estado
+0200;Gestao Previdenciaria do Estado;GESTAO;Garantir o pagamento de proventos de aposentadoria, pensoes e demais beneficios do RPPS estadual;Servidores inativos e pensionistas
+0300;Encargos Especiais e Gestao da Divida Publica;ESPECIAL;Honrar os compromissos financeiros do Estado, incluindo servico da divida, precatorios e transferencias legais;Sociedade paranaense
+1001;Educacao Basica de Qualidade;TEMATICO;Ampliar o acesso, a permanencia e a qualidade da educacao basica na rede estadual de ensino;Estudantes da rede estadual de educacao basica
+1002;Educacao Profissional e Ensino Superior;TEMATICO;Expandir a oferta de educacao profissional e fortalecer as universidades estaduais;Estudantes do ensino profissional e superior
+1101;Atencao a Saude da Populacao;TEMATICO;Ampliar e qualificar a oferta de servicos de atencao primaria, especializada e hospitalar no SUS-PR;Populacao usuaria do SUS no Parana
+1102;Vigilancia em Saude;TEMATICO;Fortalecer as acoes de vigilancia epidemiologica, sanitaria, ambiental e da saude do trabalhador;Populacao paranaense
+1201;Seguranca Publica Integrada;TEMATICO;Reduzir os indices de criminalidade por meio da integracao operacional das forcas de seguranca;Populacao paranaense
+1202;Sistema Penal e Socioeducativo;TEMATICO;Ampliar vagas e qualificar a custodia, a ressocializacao e o atendimento socioeducativo;Pessoas privadas de liberdade e adolescentes em conflito com a lei
+1301;Infraestrutura Rodoviaria;TEMATICO;Conservar, restaurar e ampliar a malha rodoviaria estadual;Usuarios das rodovias estaduais
+1302;Logistica e Mobilidade;TEMATICO;Ampliar a capacidade logistica multimodal e a mobilidade metropolitana;Setor produtivo e populacao das regioes metropolitanas
+1401;Agricultura Familiar e Abastecimento;TEMATICO;Fortalecer a agricultura familiar, a assistencia tecnica rural e a seguranca alimentar;Agricultores familiares e populacao em inseguranca alimentar
+1402;Defesa Agropecuaria;TEMATICO;Manter a sanidade animal e vegetal e a qualidade dos produtos agropecuarios do Estado;Produtores rurais e consumidores
+1501;Desenvolvimento Sustentavel e Recursos Hidricos;TEMATICO;Promover a gestao ambiental, a conservacao da biodiversidade e a seguranca hidrica;Populacao paranaense
+1601;Assistencia Social, Familia e Direitos Humanos;TEMATICO;Ampliar a protecao social basica e especial e a garantia de direitos;Familias em situacao de vulnerabilidade social
+1701;Ciencia, Tecnologia e Inovacao;TEMATICO;Fomentar a pesquisa, a inovacao e a transferencia de tecnologia no Parana;Comunidade cientifica e setor produtivo
+1801;Desenvolvimento Economico, Trabalho e Emprego;TEMATICO;Atrair investimentos, qualificar trabalhadores e ampliar a geracao de emprego e renda;Trabalhadores e empresas paranaenses
+1901;Cultura, Esporte e Turismo;TEMATICO;Ampliar o acesso a cultura, ao esporte e fortalecer o turismo estadual;Populacao paranaense e visitantes
+2001;Habitacao e Desenvolvimento Urbano;TEMATICO;Reduzir o deficit habitacional e apoiar a infraestrutura urbana dos municipios;Familias de baixa renda e municipios paranaenses
+2101;Governo Digital e Modernizacao da Gestao;TEMATICO;Digitalizar servicos publicos e modernizar a gestao estadual;Cidadaos e servidores publicos estaduais
+2201;Gestao Fiscal e Financeira do Estado;TEMATICO;Aperfeicoar a administracao tributaria, o planejamento e o controle das financas estaduais;Administracao Publica Estadual e contribuintes
+2301;Exercicio das Funcoes Institucionais;GESTAO;Assegurar o exercicio das funcoes constitucionais dos Poderes e orgaos autonomos;Sociedade paranaense

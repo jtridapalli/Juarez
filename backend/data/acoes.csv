@@ -1,0 +1,79 @@
+programa;codigo;nome;tipo;produto;unidadeMedida;metaFisica
+0001;9999;Reserva de Contingencia;RESERVA_CONTINGENCIA;;;
+0100;2001;Administracao de Pessoal e Encargos Sociais;ATIVIDADE;Folha de pagamento processada;Percentual;100
+0100;2002;Manutencao dos Servicos Administrativos e Operacionais;ATIVIDADE;Unidade administrativa mantida;Unidade;1
+0100;2003;Encargos com Estagiarios e Aprendizes;ATIVIDADE;Estagiario contratado;Pessoa;1200
+0100;2004;Tecnologia da Informacao e Comunicacao Corporativa;ATIVIDADE;Servico de TIC mantido;Percentual;100
+0100;1005;Modernizacao e Reforma de Instalacoes Fisicas;PROJETO;Edificacao reformada;Metro quadrado;25000
+0200;0201;Pagamento de Aposentadorias e Reformas do RPPS;OPERACAO_ESPECIAL;Beneficio previdenciario pago;Beneficio;180000
+0200;0202;Pagamento de Pensoes do RPPS;OPERACAO_ESPECIAL;Beneficio previdenciario pago;Beneficio;62000
+0200;2203;Gestao Administrativa do Regime Proprio de Previdencia;ATIVIDADE;Gestao realizada;Percentual;100
+0300;0301;Amortizacao e Encargos da Divida Publica Interna;OPERACAO_ESPECIAL;Compromisso honrado;Percentual;100
+0300;0302;Amortizacao e Encargos da Divida Publica Externa;OPERACAO_ESPECIAL;Compromisso honrado;Percentual;100
+0300;0303;Cumprimento de Sentencas Judiciais e Precatorios;OPERACAO_ESPECIAL;Precatorio pago;Unidade;3500
+0300;0304;Transferencias Constitucionais e Legais a Municipios;OPERACAO_ESPECIAL;Transferencia efetuada;Percentual;100
+0300;0305;Contribuicao Patronal e Aporte ao Regime Previdenciario;OPERACAO_ESPECIAL;Aporte realizado;Percentual;100
+1001;2101;Manutencao da Rede Estadual de Educacao Basica;ATIVIDADE;Estudante atendido;Aluno;1000000
+1001;2102;Alimentacao Escolar da Rede Estadual;ATIVIDADE;Refeicao servida;Milhao de refeicoes;180
+1001;2103;Transporte Escolar da Rede Estadual;ATIVIDADE;Estudante transportado;Aluno;150000
+1001;2104;Educacao Especial e Inclusiva;ATIVIDADE;Estudante atendido;Aluno;42000
+1001;2105;Formacao Continuada de Profissionais da Educacao;ATIVIDADE;Profissional formado;Pessoa;60000
+1001;1106;Construcao e Ampliacao de Escolas Estaduais;PROJETO;Escola construida ou ampliada;Unidade;120
+1001;1107;Equipamentos e Tecnologia Educacional;PROJETO;Escola equipada;Unidade;800
+1002;2201;Manutencao das Universidades Estaduais;ATIVIDADE;Vaga de graduacao mantida;Vaga;95000
+1002;2202;Educacao Profissional e Tecnologica;ATIVIDADE;Matricula em curso tecnico;Matricula;70000
+1002;2203;Fomento a Pesquisa e a Pos-Graduacao;ATIVIDADE;Bolsa concedida;Bolsa;4500
+1002;1204;Expansao da Infraestrutura Universitaria;PROJETO;Obra entregue;Unidade;18
+1101;2301;Atencao Especializada e Hospitalar de Media e Alta Complexidade;ATIVIDADE;Procedimento realizado;Milhao de procedimentos;95
+1101;2302;Apoio a Atencao Primaria em Saude nos Municipios;ATIVIDADE;Municipio apoiado;Municipio;399
+1101;2303;Assistencia Farmaceutica e Insumos Estrategicos;ATIVIDADE;Medicamento dispensado;Milhao de unidades;220
+1101;2304;Servico de Atendimento Movel de Urgencia e Transporte Sanitario;ATIVIDADE;Atendimento realizado;Atendimento;900000
+1101;1305;Construcao, Ampliacao e Reforma de Unidades de Saude;PROJETO;Unidade de saude entregue;Unidade;35
+1101;1306;Equipamentos e Materiais Permanentes para a Rede de Saude;PROJETO;Unidade equipada;Unidade;150
+1102;2401;Vigilancia Epidemiologica e Imunizacao;ATIVIDADE;Dose de vacina distribuida;Milhao de doses;18
+1102;2402;Vigilancia Sanitaria e Ambiental em Saude;ATIVIDADE;Inspecao realizada;Inspecao;65000
+1201;2501;Policiamento Ostensivo e Preventivo;ATIVIDADE;Municipio coberto;Municipio;399
+1201;2502;Investigacao Criminal e Pericia Oficial;ATIVIDADE;Inquerito e laudo concluido;Unidade;480000
+1201;2503;Atendimento de Emergencia, Combate a Incendios e Defesa Civil;ATIVIDADE;Atendimento realizado;Atendimento;320000
+1201;2504;Fiscalizacao de Transito e Educacao para o Transito;ATIVIDADE;Acao de fiscalizacao;Acao;120000
+1201;1505;Aquisicao de Viaturas, Armamentos e Equipamentos de Seguranca;PROJETO;Equipamento adquirido;Unidade;4200
+1201;1506;Videomonitoramento e Inteligencia em Seguranca Publica;PROJETO;Camera instalada;Unidade;9000
+1202;2601;Custodia e Ressocializacao de Pessoas Privadas de Liberdade;ATIVIDADE;Vaga prisional mantida;Vaga;35000
+1202;2602;Atendimento Socioeducativo a Adolescentes;ATIVIDADE;Adolescente atendido;Pessoa;2600
+1202;1603;Ampliacao de Vagas do Sistema Penal;PROJETO;Vaga criada;Vaga;3000
+1301;2701;Conservacao e Manutencao da Malha Rodoviaria Estadual;ATIVIDADE;Rodovia conservada;Quilometro;22000
+1301;1702;Restauracao e Pavimentacao de Rodovias Estaduais;PROJETO;Rodovia pavimentada ou restaurada;Quilometro;1200
+1301;1703;Construcao de Pontes, Viadutos e Obras de Arte Especiais;PROJETO;Obra de arte entregue;Unidade;60
+1302;2801;Gestao do Sistema de Transporte Intermunicipal;ATIVIDADE;Linha fiscalizada;Linha;2800
+1302;1802;Infraestrutura Logistica Ferroviaria, Portuaria e Aeroportuaria;PROJETO;Obra logistica entregue;Unidade;12
+1302;1803;Mobilidade Urbana e Metropolitana;PROJETO;Obra de mobilidade entregue;Unidade;25
+1401;2901;Assistencia Tecnica e Extensao Rural;ATIVIDADE;Familia rural atendida;Familia;95000
+1401;2902;Seguranca Alimentar e Nutricional;ATIVIDADE;Familia beneficiada;Familia;150000
+1401;1903;Apoio a Infraestrutura Rural e ao Cooperativismo;PROJETO;Municipio atendido;Municipio;250
+1402;2911;Defesa Sanitaria Animal e Vegetal;ATIVIDADE;Estabelecimento fiscalizado;Unidade;140000
+1501;3001;Gestao Ambiental, Licenciamento e Fiscalizacao;ATIVIDADE;Licenca e fiscalizacao processada;Unidade;60000
+1501;3002;Gestao de Recursos Hidricos e Seguranca Hidrica;ATIVIDADE;Bacia hidrografica monitorada;Unidade;16
+1501;1003;Conservacao da Biodiversidade e Unidades de Conservacao;PROJETO;Unidade de conservacao estruturada;Unidade;70
+1601;3101;Protecao Social Basica e Especial;ATIVIDADE;Familia atendida;Familia;320000
+1601;3102;Transferencia de Renda e Beneficios Eventuais;ATIVIDADE;Familia beneficiada;Familia;180000
+1601;3103;Promocao e Defesa de Direitos Humanos e da Cidadania;ATIVIDADE;Atendimento realizado;Atendimento;85000
+1701;3201;Fomento a Pesquisa Cientifica e Tecnologica;ATIVIDADE;Projeto apoiado;Projeto;900
+1701;3202;Inovacao, Startups e Parques Tecnologicos;ATIVIDADE;Empresa apoiada;Empresa;1200
+1801;3301;Atracao de Investimentos e Apoio ao Setor Produtivo;ATIVIDADE;Empresa atendida;Empresa;3500
+1801;3302;Qualificacao Profissional e Intermediacao de Mao de Obra;ATIVIDADE;Trabalhador qualificado;Pessoa;60000
+1901;3401;Fomento a Cultura e Preservacao do Patrimonio;ATIVIDADE;Projeto cultural apoiado;Projeto;1500
+1901;3402;Esporte, Lazer e Rendimento;ATIVIDADE;Atleta e cidadao atendido;Pessoa;250000
+1901;3403;Promocao e Desenvolvimento do Turismo;ATIVIDADE;Destino promovido;Destino;40
+2001;3501;Producao e Melhoria Habitacional;ATIVIDADE;Familia atendida;Familia;25000
+2001;1502;Apoio a Infraestrutura Urbana dos Municipios;PROJETO;Municipio atendido;Municipio;399
+2101;3601;Governo Digital e Servicos Publicos Digitais;ATIVIDADE;Servico digitalizado;Servico;600
+2101;3602;Infraestrutura de Dados e Conectividade do Estado;ATIVIDADE;Orgao conectado;Orgao;100
+2201;3701;Administracao Tributaria e Fiscalizacao da Receita Estadual;ATIVIDADE;Contribuinte fiscalizado;Contribuinte;45000
+2201;3702;Planejamento, Orcamento e Gestao de Convenios;ATIVIDADE;Instrumento gerido;Unidade;3000
+2201;3703;Controle Interno e Transparencia;ATIVIDADE;Auditoria realizada;Auditoria;350
+2301;3801;Processo Legislativo e Fiscalizacao Politico-Administrativa;ATIVIDADE;Proposicao apreciada;Unidade;2400
+2301;3802;Controle Externo da Administracao Publica;ATIVIDADE;Prestacao de contas julgada;Unidade;1800
+2301;3803;Prestacao Jurisdicional;ATIVIDADE;Processo julgado;Processo;2200000
+2301;3804;Defesa da Ordem Juridica e do Regime Democratico;ATIVIDADE;Procedimento instaurado;Unidade;420000
+2301;3805;Assistencia Juridica Integral e Gratuita;ATIVIDADE;Atendimento realizado;Atendimento;600000
+2301;3806;Representacao Judicial e Consultoria Juridica do Estado;ATIVIDADE;Processo acompanhado;Processo;180000
