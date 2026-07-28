@@ -16,7 +16,7 @@ import { api, EXERCICIO, type Painel } from '../api';
 import { Aviso, Cartao, Carregando, Etiqueta, Indicador, TituloPagina } from '../componentes/base';
 import { formatarDataHora, formatarInteiro, formatarMoeda, formatarPercentual, formatarResumo, rotuloStatus } from '../formato';
 
-const CORES = ['#0b3f8c', '#1256b3', '#1f6fd6', '#4f93e4', '#7cb0ec', '#a7ccf3', '#f59e0b', '#10b981', '#ef4444', '#8b5cf6'];
+const CORES = ['#0b3f8c', '#1f6fd6', '#0e9488', '#f59e0b', '#7c3aed', '#be185d', '#64748b', '#15803d', '#b45309', '#0369a1'];
 
 export function PaginaPainel() {
   const { data, isLoading, error } = useQuery({
@@ -127,6 +127,8 @@ export function PaginaPainel() {
                   verticalAlign="bottom"
                   iconSize={8}
                   wrapperStyle={{ fontSize: 10, lineHeight: '1.35rem', paddingTop: 4 }}
+                  // Sem o formatador, o texto da legenda assume a cor da fatia e perde contraste.
+                  formatter={(valor) => <span className="text-slate-700">{valor}</span>}
                 />
                 <Tooltip formatter={(v) => `R$ ${formatarMoeda(Number(v))}`} />
               </PieChart>
