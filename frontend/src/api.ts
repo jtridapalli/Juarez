@@ -26,7 +26,8 @@ async function requisicao<T>(caminho: string, opcoes: RequestInit = {}): Promise
   const resposta = await fetch(`/api${caminho}`, {
     ...opcoes,
     headers: {
-      'Content-Type': 'application/json',
+      // O cabecalho de tipo so acompanha requisicoes que efetivamente enviam corpo.
+      ...(opcoes.body === undefined ? {} : { 'Content-Type': 'application/json' }),
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...(opcoes.headers ?? {}),
     },

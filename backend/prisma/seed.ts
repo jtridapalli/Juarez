@@ -14,7 +14,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { lerCsv } from '../src/lib/csv.js';
 import { centavos, distribuir, formatarBRL } from '../src/lib/money.js';
-import { FOLGA_TETO, PLANO_DESPESA, PLANO_RECEITA, PROJECAO } from './dados/plano-loa2027.js';
+import { folgaTeto, PLANO_DESPESA, PLANO_RECEITA, PROJECAO } from './dados/plano-loa2027.js';
 
 const prisma = new PrismaClient();
 const dadosDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'data');
@@ -293,14 +293,16 @@ async function main() {
   }
 
   console.log('Definindo os tetos das unidades orcamentarias...');
+  const codigoPorUnidadeId = new Map(unidades.map((u) => [u.id, u.codigo]));
   for (const [unidadeId, total] of totalPorUnidade) {
+    const folga = folgaTeto(codigoPorUnidadeId.get(unidadeId)!);
     await prisma.limiteOrcamentario.create({
       data: {
         exercicioId: exercicio.id,
         unidadeId,
         escopo: 'TOTAL',
-        valor: centavos(total * FOLGA_TETO),
-        observacao: `Teto comunicado pela SEPL/SEFA com folga de ${((FOLGA_TETO - 1) * 100).toFixed(0)}% sobre a proposta preliminar.`,
+        valor: centavos(total * folga),
+        observacao: `Teto comunicado pela SEPL/SEFA com folga de ${((folga - 1) * 100).toFixed(0)}% sobre a proposta preliminar.`,
       },
     });
   }

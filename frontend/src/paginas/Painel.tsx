@@ -107,12 +107,27 @@ export function PaginaPainel() {
           <div className="h-80 px-2 py-3">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
-                <Pie data={dadosGrupo} dataKey="valor" nameKey="nome" innerRadius={48} outerRadius={82} paddingAngle={1}>
+                <Pie
+                  data={dadosGrupo}
+                  dataKey="valor"
+                  nameKey="nome"
+                  cx="50%"
+                  cy="34%"
+                  innerRadius={44}
+                  outerRadius={76}
+                  paddingAngle={1}
+                >
                   {dadosGrupo.map((_, i) => (
                     <Cell key={i} fill={CORES[i % CORES.length]} />
                   ))}
                 </Pie>
-                <Legend wrapperStyle={{ fontSize: 10 }} />
+                <Legend
+                  layout="vertical"
+                  align="center"
+                  verticalAlign="bottom"
+                  iconSize={8}
+                  wrapperStyle={{ fontSize: 10, lineHeight: '1.35rem', paddingTop: 4 }}
+                />
                 <Tooltip formatter={(v) => `R$ ${formatarMoeda(Number(v))}`} />
               </PieChart>
             </ResponsiveContainer>

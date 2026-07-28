@@ -383,5 +383,13 @@ export const PLANO_DESPESA: LinhaDespesa[] = [
   d('8000.8001', '0300', '0304', '28', '845', '3', '40', '81', '799', 45, { rp: '1' }),
 ];
 
-/** Limites (tetos) enviados as unidades orcamentarias, em percentual da despesa proposta. */
-export const FOLGA_TETO = 1.05;
+/**
+ * Folga do teto comunicado a cada unidade orcamentaria, em relacao a proposta
+ * preliminar. A folga varia entre 2% e 15% de forma deterministica a partir do
+ * codigo da unidade, reproduzindo a negociacao caso a caso conduzida pelo
+ * orgao central durante a captacao.
+ */
+export function folgaTeto(codigoUnidade: string): number {
+  const soma = [...codigoUnidade].reduce((total, caractere) => total + caractere.charCodeAt(0), 0);
+  return 1.02 + (soma % 14) / 100;
+}
