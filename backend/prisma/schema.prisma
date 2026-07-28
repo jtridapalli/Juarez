@@ -1,0 +1,425 @@
+// Modelo de dados do Sistema de Elaboracao da Lei Orcamentaria Anual (LOA) 2027
+// Governo do Estado do Parana
+//
+// A modelagem segue as classificacoes orcamentarias brasileiras:
+//  - Lei Federal 4.320/1964 (classificacao da receita e da despesa, anexos)
+//  - Portaria MOG 42/1999 (classificacao funcional: funcao e subfuncao)
+//  - Portaria Interministerial STN/SOF 163/2001 (natureza da despesa)
+//  - Ementario da Receita STN/SOF (natureza da receita)
+//  - LC 101/2000 - LRF (limites e demonstrativos)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Ciclo orcamentario
+// ---------------------------------------------------------------------------
+
+model Exercicio {
+  id             Int      @id @default(autoincrement())
+  ano            Int      @unique
+  status         String   @default("CAPTACAO") // PREPARACAO | CAPTACAO | ANALISE | CONSOLIDACAO | ENCERRADO
+  ppaInicio      Int
+  ppaFim         Int
+  ldoLei         String?
+  dataLimiteUO   DateTime?
+  dataEnvioAlep  DateTime?
+  observacao     String?
+  criadoEm       DateTime @default(now())
+  atualizadoEm   DateTime @updatedAt
+
+  parametros     ParametroFiscal[]
+  limites        LimiteOrcamentario[]
+  receitas       ReceitaPrevista[]
+  propostas      PropostaUO[]
+  consolidacoes  Consolidacao[]
+  emendas        EmendaParlamentar[]
+}
+
+// Parametros macrofiscais e legais usados pelo motor de validacao.
+model ParametroFiscal {
+  id           Int       @id @default(autoincrement())
+  exercicioId  Int
+  exercicio    Exercicio @relation(fields: [exercicioId], references: [id], onDelete: Cascade)
+  chave        String
+  descricao    String
+  valor        Float
+  unidade      String    @default("BRL") // BRL | PERCENTUAL | INDICE
+  fundamento   String?
+
+  @@unique([exercicioId, chave])
+}
+
+// ---------------------------------------------------------------------------
+// Classificacao institucional
+// ---------------------------------------------------------------------------
+
+model Orgao {
+  id                Int      @id @default(autoincrement())
+  codigo            String   @unique
+  nome              String
+  sigla             String
+  poder             String // EXECUTIVO | LEGISLATIVO | JUDICIARIO | MINISTERIO_PUBLICO | DEFENSORIA | TRIBUNAL_CONTAS
+  tipoAdministracao String // DIRETA | AUTARQUIA | FUNDACAO | FUNDO | EMPRESA_DEPENDENTE | EMPRESA_NAO_DEPENDENTE
+  ativo             Boolean  @default(true)
+
+  unidades          UnidadeOrcamentaria[]
+}
+
+model UnidadeOrcamentaria {
+  id       Int     @id @default(autoincrement())
+  codigo   String  @unique // codigo completo orgao.unidade, ex. 4500.4501
+  nome     String
+  sigla    String
+  orgaoId  Int
+  orgao    Orgao   @relation(fields: [orgaoId], references: [id], onDelete: Cascade)
+  ativo    Boolean @default(true)
+
+  usuarios  Usuario[]
+  limites   LimiteOrcamentario[]
+  propostas PropostaUO[]
+  dotacoes  Dotacao[]
+  receitas  ReceitaPrevista[]
+  emendas   EmendaParlamentar[]
+}
+
+// ---------------------------------------------------------------------------
+// Classificacao funcional (Portaria MOG 42/1999)
+// ---------------------------------------------------------------------------
+
+model Funcao {
+  id     Int    @id @default(autoincrement())
+  codigo String @unique // 2 digitos
+  nome   String
+
+  subfuncoes Subfuncao[]
+  dotacoes   Dotacao[]
+}
+
+model Subfuncao {
+  id       Int    @id @default(autoincrement())
+  codigo   String @unique // 3 digitos
+  nome     String
+  funcaoId Int?
+  funcao   Funcao? @relation(fields: [funcaoId], references: [id])
+
+  dotacoes Dotacao[]
+}
+
+// ---------------------------------------------------------------------------
+// Classificacao programatica (PPA 2024-2027)
+// ---------------------------------------------------------------------------
+
+model Programa {
+  id          Int     @id @default(autoincrement())
+  codigo      String  @unique // 4 digitos
+  nome        String
+  tipo        String // TEMATICO | GESTAO | ESPECIAL
+  objetivo    String?
+  publicoAlvo String?
+  ppaInicio   Int
+  ppaFim      Int
+  ativo       Boolean @default(true)
+
+  acoes    Acao[]
+  dotacoes Dotacao[]
+}
+
+model Acao {
+  id            Int      @id @default(autoincrement())
+  codigo        String // 4 digitos
+  nome          String
+  tipo          String // PROJETO | ATIVIDADE | OPERACAO_ESPECIAL | RESERVA_CONTINGENCIA
+  programaId    Int
+  programa      Programa @relation(fields: [programaId], references: [id], onDelete: Cascade)
+  produto       String?
+  unidadeMedida String?
+  metaFisica    Float?
+  descricao     String?
+  ativo         Boolean  @default(true)
+
+  dotacoes Dotacao[]
+  emendas  EmendaParlamentar[]
+
+  @@unique([programaId, codigo])
+}
+
+// ---------------------------------------------------------------------------
+// Classificacao economica
+// ---------------------------------------------------------------------------
+
+model NaturezaReceita {
+  id        Int     @id @default(autoincrement())
+  codigo    String  @unique // 8 digitos, ex. 1.1.1.8.01.1.1
+  nome      String
+  categoria String // 1 Correntes | 2 Capital | 7 Correntes-intra | 8 Capital-intra | 9 Deducoes
+  origem    String
+  especie   String
+  deducao   Boolean @default(false)
+  ativo     Boolean @default(true)
+
+  receitas ReceitaPrevista[]
+}
+
+model GrupoNaturezaDespesa {
+  id        Int    @id @default(autoincrement())
+  codigo    String @unique // 1 digito
+  nome      String
+  categoria String // 3 Corrente | 4 Capital | 9 Reserva
+
+  dotacoes Dotacao[]
+}
+
+model ModalidadeAplicacao {
+  id     Int    @id @default(autoincrement())
+  codigo String @unique // 2 digitos
+  nome   String
+
+  dotacoes Dotacao[]
+}
+
+model ElementoDespesa {
+  id      Int    @id @default(autoincrement())
+  codigo  String @unique // 2 digitos
+  nome    String
+  // Grupos de natureza compativeis (lista de codigos separada por virgula), ex. "3,4"
+  grupos  String
+
+  dotacoes Dotacao[]
+}
+
+model FonteRecurso {
+  id         Int     @id @default(autoincrement())
+  codigo     String  @unique // Fonte/destinacao de recursos
+  nome       String
+  tipo       String // LIVRE | VINCULADA
+  vinculacao String? // EDUCACAO | SAUDE | FUNDEB | PREVIDENCIA | DIVIDA | OPERACAO_CREDITO | CONVENIO | OUTRAS
+  origem     String // TESOURO | PROPRIA | TRANSFERENCIA | OPERACAO_CREDITO | ALIENACAO
+  ativo      Boolean @default(true)
+
+  receitas ReceitaPrevista[]
+  dotacoes Dotacao[]
+  limites  LimiteOrcamentario[]
+}
+
+// ---------------------------------------------------------------------------
+// Limites (tetos) por unidade orcamentaria
+// ---------------------------------------------------------------------------
+
+model LimiteOrcamentario {
+  id            Int                 @id @default(autoincrement())
+  exercicioId   Int
+  exercicio     Exercicio           @relation(fields: [exercicioId], references: [id], onDelete: Cascade)
+  unidadeId     Int
+  unidade       UnidadeOrcamentaria @relation(fields: [unidadeId], references: [id], onDelete: Cascade)
+  // Escopo do limite: TOTAL | PESSOAL | CUSTEIO | INVESTIMENTO
+  escopo        String              @default("TOTAL")
+  fonteId       Int?
+  fonte         FonteRecurso?       @relation(fields: [fonteId], references: [id])
+  valor         Float
+  observacao    String?
+  atualizadoEm  DateTime            @updatedAt
+
+  @@unique([exercicioId, unidadeId, escopo])
+}
+
+// ---------------------------------------------------------------------------
+// Previsao da receita
+// ---------------------------------------------------------------------------
+
+model ReceitaPrevista {
+  id           Int             @id @default(autoincrement())
+  exercicioId  Int
+  exercicio    Exercicio       @relation(fields: [exercicioId], references: [id], onDelete: Cascade)
+  naturezaId   Int
+  natureza     NaturezaReceita @relation(fields: [naturezaId], references: [id])
+  fonteId      Int
+  fonte        FonteRecurso    @relation(fields: [fonteId], references: [id])
+  unidadeId    Int?
+  unidade      UnidadeOrcamentaria? @relation(fields: [unidadeId], references: [id])
+  esfera       String          @default("F") // F Fiscal | S Seguridade Social | I Investimento
+  valor        Float
+  memoriaCalculo String?
+  criadoEm     DateTime        @default(now())
+  atualizadoEm DateTime        @updatedAt
+
+  @@index([exercicioId])
+}
+
+// ---------------------------------------------------------------------------
+// Proposta de despesa por unidade orcamentaria (workflow)
+// ---------------------------------------------------------------------------
+
+model PropostaUO {
+  id           Int                 @id @default(autoincrement())
+  exercicioId  Int
+  exercicio    Exercicio           @relation(fields: [exercicioId], references: [id], onDelete: Cascade)
+  unidadeId    Int
+  unidade      UnidadeOrcamentaria @relation(fields: [unidadeId], references: [id], onDelete: Cascade)
+  status       String              @default("EM_ELABORACAO") // EM_ELABORACAO | ENVIADA | EM_ANALISE | DEVOLVIDA | HOMOLOGADA
+  versao       Int                 @default(1)
+  enviadaEm    DateTime?
+  analisadaEm  DateTime?
+  parecer      String?
+  criadoEm     DateTime            @default(now())
+  atualizadoEm DateTime            @updatedAt
+
+  dotacoes Dotacao[]
+
+  @@unique([exercicioId, unidadeId])
+}
+
+// Dotacao orcamentaria (linha do Quadro de Detalhamento da Despesa).
+model Dotacao {
+  id           Int                 @id @default(autoincrement())
+  propostaId   Int
+  proposta     PropostaUO          @relation(fields: [propostaId], references: [id], onDelete: Cascade)
+  unidadeId    Int
+  unidade      UnidadeOrcamentaria @relation(fields: [unidadeId], references: [id])
+
+  funcaoId     Int
+  funcao       Funcao              @relation(fields: [funcaoId], references: [id])
+  subfuncaoId  Int
+  subfuncao    Subfuncao           @relation(fields: [subfuncaoId], references: [id])
+  programaId   Int
+  programa     Programa            @relation(fields: [programaId], references: [id])
+  acaoId       Int
+  acao         Acao                @relation(fields: [acaoId], references: [id])
+  subtitulo    String              @default("0000") // localizador do gasto
+  localizador  String?
+
+  esfera       String              @default("F") // F | S | I
+  categoria    String // 3 Corrente | 4 Capital | 9 Reserva
+  grupoId      Int
+  grupo        GrupoNaturezaDespesa @relation(fields: [grupoId], references: [id])
+  modalidadeId Int
+  modalidade   ModalidadeAplicacao @relation(fields: [modalidadeId], references: [id])
+  elementoId   Int
+  elemento     ElementoDespesa     @relation(fields: [elementoId], references: [id])
+  fonteId      Int
+  fonte        FonteRecurso        @relation(fields: [fonteId], references: [id])
+  iduso        String              @default("0")
+  rp           String              @default("2") // Resultado primario: 1 primaria, 2 discricionaria, 3 PAC...
+
+  valor        Float
+  justificativa String?
+  criadoEm     DateTime            @default(now())
+  atualizadoEm DateTime            @updatedAt
+
+  @@index([propostaId])
+  @@index([unidadeId])
+}
+
+// ---------------------------------------------------------------------------
+// Emendas parlamentares
+// ---------------------------------------------------------------------------
+
+model EmendaParlamentar {
+  id          Int                 @id @default(autoincrement())
+  exercicioId Int
+  exercicio   Exercicio           @relation(fields: [exercicioId], references: [id], onDelete: Cascade)
+  numero      String
+  autor       String
+  tipo        String              @default("IMPOSITIVA") // IMPOSITIVA | VOLUNTARIA
+  unidadeId   Int
+  unidade     UnidadeOrcamentaria @relation(fields: [unidadeId], references: [id])
+  acaoId      Int?
+  acao        Acao?               @relation(fields: [acaoId], references: [id])
+  objeto      String
+  municipio   String?
+  valor       Float
+  status      String              @default("PROPOSTA") // PROPOSTA | ACATADA | REJEITADA
+
+  @@unique([exercicioId, numero])
+}
+
+// ---------------------------------------------------------------------------
+// Validacao e consolidacao
+// ---------------------------------------------------------------------------
+
+model ExecucaoValidacao {
+  id          Int      @id @default(autoincrement())
+  exercicioId Int
+  escopo      String   @default("GLOBAL") // GLOBAL | UNIDADE
+  unidadeId   Int?
+  executadaEm DateTime @default(now())
+  totalRegras Int      @default(0)
+  totalErros  Int      @default(0)
+  totalAlertas Int     @default(0)
+  aprovado    Boolean  @default(false)
+
+  resultados ResultadoValidacao[]
+}
+
+model ResultadoValidacao {
+  id             Int               @id @default(autoincrement())
+  execucaoId     Int
+  execucao       ExecucaoValidacao @relation(fields: [execucaoId], references: [id], onDelete: Cascade)
+  regra          String
+  titulo         String
+  severidade     String // ERRO | ALERTA | INFO
+  aprovado       Boolean
+  mensagem       String
+  fundamento     String?
+  valorApurado   Float?
+  valorReferencia Float?
+  detalhes       String? // JSON
+}
+
+model Consolidacao {
+  id             Int       @id @default(autoincrement())
+  exercicioId    Int
+  exercicio      Exercicio @relation(fields: [exercicioId], references: [id], onDelete: Cascade)
+  versao         Int
+  geradaEm       DateTime  @default(now())
+  geradaPor      String?
+  receitaTotal   Float
+  despesaTotal   Float
+  fiscalReceita  Float     @default(0)
+  fiscalDespesa  Float     @default(0)
+  seguridadeReceita Float  @default(0)
+  seguridadeDespesa Float  @default(0)
+  equilibrada    Boolean   @default(false)
+  validacaoOk    Boolean   @default(false)
+  hash           String
+  resumo         String? // JSON com totalizacoes
+
+  @@unique([exercicioId, versao])
+}
+
+// ---------------------------------------------------------------------------
+// Seguranca e auditoria
+// ---------------------------------------------------------------------------
+
+model Usuario {
+  id        Int                  @id @default(autoincrement())
+  nome      String
+  email     String               @unique
+  senhaHash String
+  perfil    String // ADMIN | ORGAO_CENTRAL | UNIDADE_ORCAMENTARIA | CONTROLE_INTERNO | CONSULTA
+  unidadeId Int?
+  unidade   UnidadeOrcamentaria? @relation(fields: [unidadeId], references: [id])
+  ativo     Boolean              @default(true)
+  criadoEm  DateTime             @default(now())
+
+  auditorias Auditoria[]
+}
+
+model Auditoria {
+  id         Int      @id @default(autoincrement())
+  usuarioId  Int?
+  usuario    Usuario? @relation(fields: [usuarioId], references: [id])
+  acao       String
+  entidade   String
+  entidadeId String?
+  detalhes   String?
+  criadoEm   DateTime @default(now())
+
+  @@index([entidade, entidadeId])
+}

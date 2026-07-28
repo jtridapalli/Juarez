@@ -1,0 +1,55 @@
+codigo;nome;grupos
+01;Aposentadorias do RPPS, Reserva Remunerada e Reformas dos Militares;1
+03;Pensoes do RPPS e do Militar;1
+04;Contratacao por Tempo Determinado;1
+05;Outros Beneficios Previdenciarios do Servidor ou do Militar;1
+07;Contribuicao a Entidades Fechadas de Previdencia;1
+08;Outros Beneficios Assistenciais do Servidor e do Militar;1,3
+11;Vencimentos e Vantagens Fixas - Pessoal Civil;1
+12;Vencimentos e Vantagens Fixas - Pessoal Militar;1
+13;Obrigacoes Patronais;1,3
+14;Diarias - Civil;3
+15;Diarias - Militar;3
+16;Outras Despesas Variaveis - Pessoal Civil;1
+17;Outras Despesas Variaveis - Pessoal Militar;1
+18;Auxilio Financeiro a Estudantes;3
+20;Auxilio Financeiro a Pesquisadores;3
+21;Juros sobre a Divida por Contrato;2
+22;Outros Encargos sobre a Divida por Contrato;2
+30;Material de Consumo;3
+31;Premiacoes Culturais, Artisticas, Cientificas, Desportivas e Outras;3
+32;Material, Bem ou Servico para Distribuicao Gratuita;3
+33;Passagens e Despesas com Locomocao;3
+34;Outras Despesas de Pessoal decorrentes de Contratos de Terceirizacao;3
+35;Servicos de Consultoria;3
+36;Outros Servicos de Terceiros - Pessoa Fisica;3
+37;Locacao de Mao-de-Obra;3
+39;Outros Servicos de Terceiros - Pessoa Juridica;3
+41;Contribuicoes;3,4
+42;Auxilios;4
+43;Subvencoes Sociais;3
+45;Subvencoes Economicas;3
+46;Auxilio-Alimentacao;3
+47;Obrigacoes Tributarias e Contributivas;3,4
+48;Outros Auxilios Financeiros a Pessoa Fisica;3
+49;Auxilio-Transporte;3
+51;Obras e Instalacoes;4
+52;Equipamentos e Material Permanente;4
+61;Aquisicao de Imoveis;5
+62;Aquisicao de Produtos para Revenda;5
+63;Aquisicao de Titulos de Credito;5
+64;Aquisicao de Titulos Representativos de Capital ja Integralizado;5
+65;Constituicao ou Aumento de Capital de Empresas;5
+66;Concessao de Emprestimos e Financiamentos;5
+67;Depositos Compulsorios;5
+71;Principal da Divida Contratual Resgatado;6
+72;Principal da Divida Mobiliaria Resgatado;6
+77;Principal Corrigido da Divida Mobiliaria Refinanciado;6
+81;Distribuicao Constitucional ou Legal de Receitas;3
+91;Sentencas Judiciais;3,4
+92;Despesas de Exercicios Anteriores;3,4
+93;Indenizacoes e Restituicoes;3,4
+94;Indenizacoes e Restituicoes Trabalhistas;1,3
+95;Indenizacoes pela Execucao de Trabalhos de Campo;3
+96;Ressarcimento de Despesas de Pessoal Requisitado;1,3
+99;A Classificar;1,2,3,4,5,6,9

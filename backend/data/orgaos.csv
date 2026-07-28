@@ -1,0 +1,28 @@
+codigo;sigla;nome;poder;tipoAdministracao
+0100;ALEP;Assembleia Legislativa do Estado do Parana;LEGISLATIVO;DIRETA
+0200;TCE-PR;Tribunal de Contas do Estado do Parana;TRIBUNAL_CONTAS;DIRETA
+0300;TJPR;Tribunal de Justica do Estado do Parana;JUDICIARIO;DIRETA
+0400;MPPR;Ministerio Publico do Estado do Parana;MINISTERIO_PUBLICO;DIRETA
+0500;DPPR;Defensoria Publica do Estado do Parana;DEFENSORIA;DIRETA
+1000;CC;Casa Civil;EXECUTIVO;DIRETA
+1100;CME;Casa Militar;EXECUTIVO;DIRETA
+1200;CGE;Controladoria Geral do Estado;EXECUTIVO;DIRETA
+1300;PGE;Procuradoria Geral do Estado;EXECUTIVO;DIRETA
+2000;SEPL;Secretaria de Estado do Planejamento;EXECUTIVO;DIRETA
+2100;SEFA;Secretaria de Estado da Fazenda;EXECUTIVO;DIRETA
+2200;SEAP;Secretaria de Estado da Administracao e da Previdencia;EXECUTIVO;DIRETA
+3000;SESA;Secretaria de Estado da Saude;EXECUTIVO;DIRETA
+4000;SEED;Secretaria de Estado da Educacao;EXECUTIVO;DIRETA
+4100;SETI;Secretaria de Estado da Ciencia, Tecnologia e Ensino Superior;EXECUTIVO;DIRETA
+5000;SESP;Secretaria de Estado da Seguranca Publica;EXECUTIVO;DIRETA
+5100;SEJU;Secretaria de Estado da Justica e Cidadania;EXECUTIVO;DIRETA
+6000;SEIL;Secretaria de Estado da Infraestrutura e Logistica;EXECUTIVO;DIRETA
+6100;SECID;Secretaria de Estado das Cidades;EXECUTIVO;DIRETA
+7000;SEAB;Secretaria de Estado da Agricultura e do Abastecimento;EXECUTIVO;DIRETA
+7100;SEDEST;Secretaria de Estado do Desenvolvimento Sustentavel;EXECUTIVO;DIRETA
+7200;SEIC;Secretaria de Estado da Industria, Comercio e Servicos;EXECUTIVO;DIRETA
+7300;SEET;Secretaria de Estado do Esporte e do Turismo;EXECUTIVO;DIRETA
+7400;SECC;Secretaria de Estado da Comunicacao Social e da Cultura;EXECUTIVO;DIRETA
+7500;SEDEF;Secretaria de Estado do Desenvolvimento Social e Familia;EXECUTIVO;DIRETA
+7600;SEI;Secretaria de Estado da Inovacao, Modernizacao e Transformacao Digital;EXECUTIVO;DIRETA
+8000;EGE;Encargos Gerais do Estado;EXECUTIVO;DIRETA

@@ -1,0 +1,42 @@
+codigo;nome;deducao
+1.1.1.8.01.1.1;ICMS - Principal;false
+1.1.1.8.01.1.3;ICMS - Divida Ativa;false
+1.1.1.8.02.1.1;IPVA - Principal;false
+1.1.1.8.02.1.3;IPVA - Divida Ativa;false
+1.1.1.8.03.1.1;ITCMD - Principal;false
+1.1.1.3.03.1.1;IRRF - Rendimentos do Trabalho;false
+1.1.2.8.01.1.1;Taxas pela Prestacao de Servicos Estaduais;false
+1.1.2.8.02.1.1;Taxas pelo Exercicio do Poder de Policia Estadual;false
+1.2.1.0.01.1.1;Contribuicao Patronal para o RPPS;false
+1.2.1.0.02.1.1;Contribuicao do Servidor Ativo Civil para o RPPS;false
+1.2.1.0.05.1.1;Contribuicao de Aposentados e Pensionistas para o RPPS;false
+1.3.1.0.00.1.1;Receita Imobiliaria;false
+1.3.2.0.00.1.1;Valores Mobiliarios - Remuneracao de Depositos Bancarios;false
+1.6.1.0.00.1.1;Servicos Administrativos e Comerciais Gerais;false
+1.7.1.8.01.2.1;Cota-Parte do Fundo de Participacao dos Estados - FPE;false
+1.7.1.8.01.3.1;Transferencias da Uniao - Lei Complementar 87/1996;false
+1.7.1.8.02.1.1;Transferencias de Recursos do SUS - Bloco de Manutencao;false
+1.7.1.8.03.1.1;Transferencias de Recursos do FNDE - Salario-Educacao;false
+1.7.1.8.04.1.1;Transferencias de Recursos do FNAS;false
+1.7.1.8.05.1.1;Transferencias da Uniao - Convenios e Instrumentos Congeneres;false
+1.7.1.8.06.1.1;Cota-Parte do IPI - Estados Exportadores;false
+1.7.1.8.07.1.1;Cota-Parte da CIDE-Combustiveis;false
+1.7.1.8.08.1.1;Cota-Parte da Compensacao Financeira de Recursos Hidricos;false
+1.7.5.8.01.1.1;Transferencias de Recursos do FUNDEB - VAAF;false
+1.7.5.8.02.1.1;Transferencias de Recursos do FUNDEB - VAAT;false
+1.7.5.8.03.1.1;Transferencias de Recursos do FUNDEB - VAAR;false
+1.9.0.8.01.1.1;Multas e Juros de Mora dos Tributos Estaduais;false
+1.9.0.8.02.1.1;Indenizacoes, Restituicoes e Ressarcimentos;false
+1.9.0.8.99.1.1;Outras Receitas Correntes Diversas;false
+2.1.1.8.01.1.1;Operacoes de Credito Internas - Contratuais;false
+2.1.2.8.01.1.1;Operacoes de Credito Externas - Contratuais;false
+2.2.1.8.01.1.1;Alienacao de Bens Moveis;false
+2.2.2.8.01.1.1;Alienacao de Bens Imoveis;false
+2.4.1.8.01.1.1;Transferencias de Capital da Uniao - Convenios;false
+7.2.1.0.01.1.1;Contribuicao Patronal Intraorcamentaria para o RPPS;false
+9.1.1.8.01.1.1;(-) Deducao de Receita para Formacao do FUNDEB - ICMS;true
+9.1.1.8.02.1.1;(-) Deducao de Receita para Formacao do FUNDEB - IPVA;true
+9.1.1.8.03.1.1;(-) Transferencia Constitucional a Municipios - Cota-Parte do ICMS;true
+9.1.1.8.04.1.1;(-) Transferencia Constitucional a Municipios - Cota-Parte do IPVA;true
+9.1.7.8.01.1.1;(-) Deducao de Receita para Formacao do FUNDEB - FPE e IPI-Exp;true
+9.1.9.8.99.1.1;(-) Outras Deducoes e Restituicoes de Receitas;true

@@ -1,0 +1,31 @@
+codigo;nome;tipo;vinculacao;origem
+500;Recursos nao Vinculados de Impostos;LIVRE;;TESOURO
+501;Outros Recursos nao Vinculados;LIVRE;;TESOURO
+540;Transferencias do FUNDEB - Impostos e Transferencias de Impostos;VINCULADA;FUNDEB;TRANSFERENCIA
+541;Transferencias do FUNDEB - Complementacao da Uniao - VAAF;VINCULADA;FUNDEB;TRANSFERENCIA
+542;Transferencias do FUNDEB - Complementacao da Uniao - VAAT;VINCULADA;FUNDEB;TRANSFERENCIA
+543;Transferencias do FUNDEB - Complementacao da Uniao - VAAR;VINCULADA;FUNDEB;TRANSFERENCIA
+550;Transferencia do Salario-Educacao;VINCULADA;EDUCACAO;TRANSFERENCIA
+552;Transferencias de Convenios e Instrumentos Congeneres Vinculados a Educacao;VINCULADA;EDUCACAO;TRANSFERENCIA
+569;Outros Recursos Vinculados a Educacao;VINCULADA;EDUCACAO;TESOURO
+600;Transferencias Fundo a Fundo de Recursos do SUS provenientes do Governo Federal;VINCULADA;SAUDE;TRANSFERENCIA
+602;Transferencias de Convenios e Instrumentos Congeneres Vinculados a Saude;VINCULADA;SAUDE;TRANSFERENCIA
+659;Outros Recursos Vinculados a Saude;VINCULADA;SAUDE;TESOURO
+660;Transferencias de Recursos do FNAS;VINCULADA;ASSISTENCIA_SOCIAL;TRANSFERENCIA
+669;Outros Recursos Vinculados a Assistencia Social;VINCULADA;ASSISTENCIA_SOCIAL;TESOURO
+700;Recursos Vinculados ao RPPS - Fundo em Capitalizacao (Plano Previdenciario);VINCULADA;PREVIDENCIA;PROPRIA
+701;Recursos Vinculados ao RPPS - Fundo em Reparticao (Plano Financeiro);VINCULADA;PREVIDENCIA;PROPRIA
+702;Recursos Vinculados ao RPPS - Taxa de Administracao;VINCULADA;PREVIDENCIA;PROPRIA
+704;Recursos Vinculados ao RGPS;VINCULADA;PREVIDENCIA;PROPRIA
+750;Recursos de Operacoes de Credito;VINCULADA;OPERACAO_CREDITO;OPERACAO_CREDITO
+751;Recursos de Operacoes de Credito - Educacao;VINCULADA;OPERACAO_CREDITO;OPERACAO_CREDITO
+752;Recursos de Alienacao de Bens e Direitos;VINCULADA;ALIENACAO;ALIENACAO
+759;Outras Transferencias de Convenios ou Instrumentos Congeneres da Uniao;VINCULADA;CONVENIO;TRANSFERENCIA
+760;Outras Transferencias de Convenios ou Instrumentos Congeneres dos Municipios;VINCULADA;CONVENIO;TRANSFERENCIA
+761;Recursos de Compensacoes Financeiras e Royalties;VINCULADA;OUTRAS;TRANSFERENCIA
+762;Recursos Vinculados ao Fundo Estadual do Meio Ambiente;VINCULADA;OUTRAS;PROPRIA
+763;Recursos Vinculados a Ciencia e Tecnologia;VINCULADA;OUTRAS;TESOURO
+764;Recursos Diretamente Arrecadados por Autarquias, Fundacoes e Fundos;VINCULADA;OUTRAS;PROPRIA
+765;Recursos Vinculados ao Fundo de Reequipamento do Poder Judiciario;VINCULADA;OUTRAS;PROPRIA
+766;Recursos Vinculados a Seguranca Publica e ao Transito;VINCULADA;OUTRAS;PROPRIA
+799;Outras Vinculacoes Legais;VINCULADA;OUTRAS;TESOURO

@@ -1,0 +1,108 @@
+codigo;nome;funcao
+031;Acao Legislativa;01
+032;Controle Externo;01
+061;Acao Judiciaria;02
+062;Defesa do Interesse Publico no Processo Judiciario;02
+091;Defesa da Ordem Juridica;03
+092;Representacao Judicial e Extrajudicial;03
+121;Planejamento e Orcamento;04
+122;Administracao Geral;04
+123;Administracao Financeira;04
+124;Controle Interno;04
+125;Normatizacao e Fiscalizacao;04
+126;Tecnologia da Informacao;04
+127;Ordenamento Territorial;04
+128;Formacao de Recursos Humanos;04
+129;Administracao de Receitas;04
+130;Administracao de Concessoes;04
+131;Comunicacao Social;04
+181;Policiamento;06
+182;Defesa Civil;06
+183;Informacao e Inteligencia;06
+241;Assistencia ao Idoso;08
+242;Assistencia ao Portador de Deficiencia;08
+243;Assistencia a Crianca e ao Adolescente;08
+244;Assistencia Comunitaria;08
+271;Previdencia Basica;09
+272;Previdencia do Regime Estatutario;09
+273;Previdencia Complementar;09
+274;Previdencia Especial;09
+301;Atencao Basica;10
+302;Assistencia Hospitalar e Ambulatorial;10
+303;Suporte Profilatico e Terapeutico;10
+304;Vigilancia Sanitaria;10
+305;Vigilancia Epidemiologica;10
+306;Alimentacao e Nutricao;10
+331;Protecao e Beneficios ao Trabalhador;11
+332;Relacoes de Trabalho;11
+333;Empregabilidade;11
+334;Fomento ao Trabalho;11
+361;Ensino Fundamental;12
+362;Ensino Medio;12
+363;Ensino Profissional;12
+364;Ensino Superior;12
+365;Educacao Infantil;12
+366;Educacao de Jovens e Adultos;12
+367;Educacao Especial;12
+368;Educacao Basica;12
+391;Patrimonio Historico, Artistico e Arqueologico;13
+392;Difusao Cultural;13
+421;Custodia e Reintegracao Social;14
+422;Direitos Individuais, Coletivos e Difusos;14
+423;Assistencia aos Povos Indigenas;14
+451;Infra-Estrutura Urbana;15
+452;Servicos Urbanos;15
+453;Transportes Coletivos Urbanos;15
+481;Habitacao Rural;16
+482;Habitacao Urbana;16
+511;Saneamento Basico Rural;17
+512;Saneamento Basico Urbano;17
+541;Preservacao e Conservacao Ambiental;18
+542;Controle Ambiental;18
+543;Recuperacao de Areas Degradadas;18
+544;Recursos Hidricos;18
+545;Meteorologia;18
+571;Desenvolvimento Cientifico;19
+572;Desenvolvimento Tecnologico e Engenharia;19
+573;Difusao do Conhecimento Cientifico e Tecnologico;19
+601;Promocao da Producao Vegetal;20
+602;Promocao da Producao Animal;20
+603;Defesa Sanitaria Vegetal;20
+604;Defesa Sanitaria Animal;20
+605;Abastecimento;20
+606;Extensao Rural;20
+607;Irrigacao;20
+631;Reforma Agraria;21
+632;Colonizacao;21
+661;Promocao Industrial;22
+662;Producao Industrial;22
+663;Mineracao;22
+664;Propriedade Industrial;22
+665;Normalizacao e Qualidade;22
+691;Promocao Comercial;23
+692;Comercializacao;23
+693;Comercio Exterior;23
+694;Servicos Financeiros;23
+695;Turismo;23
+721;Comunicacoes Postais;24
+722;Telecomunicacoes;24
+751;Conservacao de Energia;25
+752;Energia Eletrica;25
+753;Combustiveis Minerais;25
+754;Biocombustiveis;25
+781;Transporte Aereo;26
+782;Transporte Rodoviario;26
+783;Transporte Ferroviario;26
+784;Transporte Hidroviario;26
+785;Transportes Especiais;26
+811;Desporto de Rendimento;27
+812;Desporto Comunitario;27
+813;Lazer;27
+841;Refinanciamento da Divida Interna;28
+842;Refinanciamento da Divida Externa;28
+843;Servico da Divida Interna;28
+844;Servico da Divida Externa;28
+845;Outras Transferencias;28
+846;Outros Encargos Especiais;28
+847;Transferencias para a Educacao Basica;28
+999;Reserva de Contingencia;99

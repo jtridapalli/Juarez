@@ -1,0 +1,16 @@
+node_modules/
+dist/
+build/
+output/
+coverage/
+.DS_Store
+*.log
+
+# Bancos SQLite locais
+*.db
+*.db-journal
+
+# Variaveis de ambiente locais
+.env
+.env.local
+!.env.example

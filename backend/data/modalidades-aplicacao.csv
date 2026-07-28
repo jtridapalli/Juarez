@@ -1,0 +1,19 @@
+codigo;nome
+20;Transferencias a Uniao
+30;Transferencias a Estados e ao Distrito Federal
+31;Transferencias a Estados e ao DF - Fundo a Fundo
+35;Transferencias Fundo a Fundo aos Estados e ao DF a conta de recursos do FNAS
+40;Transferencias a Municipios
+41;Transferencias a Municipios - Fundo a Fundo
+45;Transferencias Fundo a Fundo a Municipios a conta de recursos do FNAS
+50;Transferencias a Instituicoes Privadas sem Fins Lucrativos
+60;Transferencias a Instituicoes Privadas com Fins Lucrativos
+67;Execucao de Contrato de Parceria - Setor Publico e Privado
+70;Transferencias a Instituicoes Multigovernamentais
+71;Transferencias a Consorcios Publicos
+72;Execucao Orcamentaria Delegada a Consorcios Publicos
+80;Transferencias ao Exterior
+90;Aplicacoes Diretas
+91;Aplicacao Direta Decorrente de Operacao entre Orgaos do Mesmo Ente
+93;Aplicacao Direta Decorrente de Operacao de Orgaos com Consorcio Publico
+99;A Definir
