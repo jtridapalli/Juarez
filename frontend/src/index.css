@@ -1,0 +1,68 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-parana-900: #04204a;
+  --color-parana-800: #062f6b;
+  --color-parana-700: #0b3f8c;
+  --color-parana-600: #1256b3;
+  --color-parana-500: #1f6fd6;
+  --color-parana-300: #9dc0ef;
+  --color-parana-200: #c4d9f7;
+  --color-parana-100: #e3edfb;
+  --color-parana-50: #f2f7fe;
+  --font-sans: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #f4f6fa;
+  color: #101828;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tabelas densas de orcamento: cabecalho fixo e leitura em colunas numericas. */
+.tabela-orcamento {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.8125rem;
+}
+
+.tabela-orcamento thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--color-parana-800);
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.5rem 0.625rem;
+  white-space: nowrap;
+}
+
+.tabela-orcamento tbody td {
+  padding: 0.4375rem 0.625rem;
+  border-bottom: 1px solid #eaecf0;
+  vertical-align: top;
+}
+
+.tabela-orcamento tbody tr:nth-child(even) {
+  background-color: #fafbfd;
+}
+
+.tabela-orcamento tbody tr:hover {
+  background-color: var(--color-parana-50);
+}
+
+.numero {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
