@@ -249,7 +249,17 @@ body {
 }
 
 .tabela tbody th { font-weight: 500; }
-.tabela td.num, .tabela th.num { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+/*
+ * Número nunca quebra linha. "R$ 2,97 bi" partido em "R$ 2,97" e "bi" separa o valor
+ * da sua unidade em linhas diferentes, e numa coluna que mistura bilhão com milhão é
+ * a unidade que diz qual é qual.
+ */
+.tabela td.num, .tabela th.num {
+  text-align: right;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
 .tabela thead th.num { font-family: var(--fonte); }
 .tabela tbody tr:hover { background: #fafbfc; }
 

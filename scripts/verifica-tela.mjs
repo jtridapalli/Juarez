@@ -122,6 +122,48 @@ async function captura(nome) {
   return caminho;
 }
 
+/**
+ * Recorte de um pedaço da tela, em escala 2.
+ *
+ * As abas longas passam de oito mil pixels de altura, e uma captura inteira delas
+ * reduzida à largura de um relato deixa o texto ilegível — o que esconde exatamente
+ * o que a captura deveria provar. Aqui o recorte sai no tamanho do elemento, com o
+ * dobro da densidade.
+ */
+async function recorta(nome, seletor, { ate = null, maxAltura = 2000 } = {}) {
+  const caixa = await avalia(`(() => {
+    const a = document.querySelector(${JSON.stringify(seletor)});
+    if (!a) return null;
+    const ra = a.getBoundingClientRect();
+    const y = ra.top + window.scrollY;
+    let fim = y + ra.height;
+    ${ate ? `const b = document.querySelector(${JSON.stringify(ate)});
+      if (b) { const rb = b.getBoundingClientRect(); fim = rb.top + window.scrollY + rb.height; }` : ''}
+    return { x: 0, y, largura: document.documentElement.clientWidth, altura: fim - y };
+  })()`);
+  if (!caixa) return null;
+
+  const altura = Math.min(caixa.altura, maxAltura);
+  await envia('Emulation.setDeviceMetricsOverride', {
+    width: 1680,
+    height: Math.ceil(caixa.y + altura + 40),
+    deviceScaleFactor: 1,
+    mobile: false,
+  });
+  await dorme(260);
+  const { data } = await envia('Page.captureScreenshot', {
+    format: 'webp',
+    quality: 92,
+    clip: {
+      x: 0, y: caixa.y, width: 1680, height: altura, scale: 2,
+    },
+  });
+  const caminho = join(saida, `${nome}.webp`);
+  writeFileSync(caminho, Buffer.from(data, 'base64'));
+  await envia('Emulation.clearDeviceMetricsOverride');
+  return caminho;
+}
+
 const falhas = [];
 const relato = [];
 function confere(rotulo, condicao, detalhe = '') {
@@ -273,6 +315,39 @@ confere('o recorte aparece na tira de toda aba', /Poder 2/.test(recortado.tira),
 confere('a tela avisa que a aderência diverge por ser recorte', recortado.avisoRecorte);
 confere('o recorte não trava a carga', /conferida/.test(recortado.selo), recortado.selo);
 capturas.push(await captura('painel-11-recorte-executivo'));
+
+// ------------------------------------------- recortes legíveis para o relato
+console.log('\nRECORTES');
+await avalia(`[...document.querySelectorAll('.lateral .botao')].find(
+  (b) => /Voltar às premissas/.test(b.textContent))?.click()`);
+await dorme(400);
+await avalia(`(() => {
+  const s = document.getElementById('sel-poder');
+  s.value = '';
+  s.dispatchEvent(new Event('change', { bubbles: true }));
+})()`);
+await dorme(800);
+
+const recortes = [
+  ['simulacao', 0, 'recorte-sensibilidade', '.secao:nth-of-type(2)', null, 1400],
+  ['abertura', 2, 'recorte-credito', '.faixa-indicadores', '.secao:nth-of-type(1)', 1500],
+  ['ano2027', 3, 'recorte-crescimento-2027', '.faixa-indicadores', '.secao:nth-of-type(1)', 1600],
+  ['metodos', 4, 'recorte-backtest', '.secao:nth-of-type(2)', null, 1100],
+  ['conferencia', 5, 'recorte-conferencia', '.estado-carga', '.secao:nth-of-type(1)', 1700],
+  ['projecao', 1, 'recorte-memoria', '.secao:nth-of-type(4)', null, 1500],
+];
+for (const [, i, nome, de, ate, maxAltura] of recortes) {
+  await avalia(`[...document.querySelectorAll('.aba-botao')][${i}].click()`);
+  await dorme(500);
+  const c = await recorta(nome, de, { ate, maxAltura });
+  if (c) { capturas.push(c); console.log(`  ${c}`); } else confere(`recorte ${nome}`, false);
+}
+
+// A lista de divergências, que é a parte do painel que fecha o circuito da auditoria.
+await avalia(`[...document.querySelectorAll('.aba-botao')][5].click()`);
+await dorme(500);
+const divs = await recorta('recorte-divergencias', '.lista-divergencias', { maxAltura: 2400 });
+if (divs) { capturas.push(divs); console.log(`  ${divs}`); }
 
 // ------------------------------------------------------- erros do console
 const erros = eventos
