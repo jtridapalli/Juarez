@@ -29,8 +29,15 @@ Para verificar a tela sem navegador aberto, com Chrome em modo headless:
 ```bash
 google-chrome --headless=new --remote-debugging-port=9222 \
   --user-data-dir=/tmp/perfil-chrome about:blank &
-node scripts/verifica-tela.mjs
+node scripts/verifica-tela.mjs   # 36 conferências na tela e as capturas do relato
+node scripts/grava-demo.mjs      # conduz o painel por um roteiro e monta o vídeo
 ```
+
+`verifica-tela.mjs` mede: percorre as oito abas, mexe nos controles e compara o que
+está escrito na tela com o que a conferência do núcleo produz. `grava-demo.mjs` usa o
+mesmo cliente CDP para encenar — arrasta o deslizante com eventos de mouse de verdade
+e monta os quadros com o demuxer `concat` do ffmpeg, de modo que uma pausa de leitura
+vire um quadro longo em vez de trezentos iguais.
 
 ## As quatro decisões estruturais
 
@@ -98,7 +105,7 @@ nucleo/        o cálculo, sem nada de interface
 dados/         os números publicados e o conjunto calibrado
 publico/       a interface
 testes/        185 testes de node:test
-scripts/       geração do conjunto e verificação da tela
+scripts/       geração do conjunto, verificação da tela e gravação do percurso
 ```
 
 ## Sobre o conjunto de dados
