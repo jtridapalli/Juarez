@@ -1,0 +1,16 @@
+{
+  "name": "painel-folha-pr",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Painel de projeção da folha de pagamento do Estado do Paraná — reimplementação conferida do modelo da DOE/SEFA-PR",
+  "scripts": {
+    "start": "node servidor.mjs",
+    "dados": "node scripts/gerar-dados.mjs",
+    "test": "node --test \"testes/*.test.mjs\"",
+    "verifica": "node scripts/gerar-dados.mjs && npm test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
