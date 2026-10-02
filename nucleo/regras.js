@@ -50,7 +50,7 @@ export const PARAMETROS_PADRAO = Object.freeze({
     Object.freeze({ orgao: 41, uo: 4101, nat: 319011, mes: 10, taxa: 0.0350 }),
     Object.freeze({ orgao: 39, uo: 3901, nat: 319011, mes: 10, taxa: 0.0280 }),
     Object.freeze({ orgao: 45, uo: 4501, nat: 319011, mes: 10, taxa: 0.0190 }),
-    Object.freeze({ orgao: 64, uo: 6401, nat: 319011, mes: 8, taxa: 0.0220 }),
+    Object.freeze({ orgao: 65, uo: 6501, nat: 319011, mes: 8, taxa: 0.0220 }),
   ]),
 });
 
