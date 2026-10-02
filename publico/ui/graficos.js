@@ -163,13 +163,22 @@ export function serieMensal({
     texto: MESES[i] ?? String(i + 1),
   }));
 
+  // A marca do 13º vai DENTRO da barra quando ela é alta: dezembro é o mês mais alto
+  // da série justamente por levar a provisão, e escrever o rótulo acima dele o
+  // empilha em cima da legenda da série de referência, que mora no mesmo canto.
+  //
+  // Dentro, o texto é só "13º". O rótulo inteiro é mais largo que a barra, e um texto
+  // branco que transborda a barra fica branco sobre o fundo branco do gráfico — o
+  // leitor vê os caracteres do meio e conclui que a tela truncou o rótulo.
+  const alturaDez = destaque13 >= 0 ? alturaUtil * (valores[destaque13] / topo) : 0;
+  const dentro = alturaDez > alturaUtil * 0.75;
   const legenda13 = destaque13 >= 0 && destaque13 < valores.length
     ? s('text', {
       x: margem.esquerda + destaque13 * passoX + passoX / 2,
-      y: y(valores[destaque13]) - 6,
-      class: 'eixo-marca',
+      y: dentro ? y(valores[destaque13]) + 13 : y(valores[destaque13]) - 6,
+      class: `eixo-marca ${dentro ? 'marca-dentro' : ''}`.trim(),
       'text-anchor': 'middle',
-      texto: '13º dentro',
+      texto: dentro ? '13º' : '13º dentro',
     })
     : null;
 

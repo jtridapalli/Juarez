@@ -184,23 +184,59 @@ function notaDeDormencia(carga) {
   ], 'aviso');
 }
 
+/**
+ * A curva do teto, desenhada como CUSTO ACUMULADO e não como nível do exercício.
+ *
+ * É a única forma de respeitar as duas exigências ao mesmo tempo. O eixo de valor
+ * tem de começar em zero, e o exercício de 2026 vale cerca de R$ 47 bi enquanto a
+ * faixa inteira do teto move menos de R$ 1 bi: desenhado como nível, com base em
+ * zero, o gráfico é uma reta horizontal e não mostra o joelho que a seção afirma
+ * existir. Desenhar o nível com base cortada mostraria o joelho e mentiria sobre a
+ * magnitude.
+ *
+ * O custo acumulado — exercício ao teto t menos exercício a teto zero — começa em
+ * zero de VERDADE, e a base em zero deixa de ser uma convenção e passa a ser o
+ * próprio dado.
+ */
 function curvaDoTeto(carga) {
   const valores = [];
   for (let v = 0; v <= 0.0401; v += 0.0025) valores.push(Number(v.toFixed(5)));
-  const pontos = curva(carga.modelo, carga.par, { campo: 'teto', valores })
-    .map((x) => ({ x: x.valor, y: x.proj2026 }));
+  const medidas = curva(carga.modelo, carga.par, { campo: 'teto', valores });
+  const piso = medidas[0].proj2026;
+  const pontos = medidas.map((x) => ({ x: x.valor, y: x.proj2026 - piso }));
+
+  // O joelho, medido: a inclinação do primeiro trecho contra a do último.
+  const inclinacao = (i) => (pontos[i].y - pontos[i - 1].y)
+    / (pontos[i].x - pontos[i - 1].x);
+  const primeira = inclinacao(1);
+  const ultima = inclinacao(pontos.length - 1);
 
   return div('', [
     curvaDePremissa({
       pontos,
       declarado: carga.par.teto,
       eixoX: (v) => pct(v, 1),
-      rotulo: 'exercício de 2026 em função do teto, em milhões de reais',
+      rotulo: 'custo acumulado do teto sobre o exercício de 2026, em milhões de reais',
     }),
     nota([
-      'Eixo vertical em milhões de reais, começando em zero. O eixo de valor de todo '
-      + 'gráfico de dinheiro deste painel começa em zero: cortar a base faria a '
-      + 'variação de poucos pontos percentuais parecer vertical.',
+      'O eixo vertical é o CUSTO ACUMULADO do teto — o exercício ao teto escolhido '
+      + 'menos o exercício a teto zero — e não o nível do exercício. A troca é '
+      + 'deliberada: o exercício vale cerca de ',
+      el('strong', { texto: bi(carga.p26.ano) }),
+      ` e a faixa inteira do teto move ${reaisMi(pontos.at(-1).y)}, então o nível `
+      + 'desenhado com base em zero seria uma reta horizontal. Cortar a base mostraria '
+      + 'o joelho e mentiria sobre a magnitude; medir o custo mostra o joelho e mantém '
+      + 'o zero como dado, e não como convenção.',
     ], 'neutro'),
+    nota([
+      el('strong', { texto: 'O joelho. ' }),
+      `No primeiro meio ponto de teto, cada ponto percentual custa ${dinheiro(primeira / 100)}`
+      + ` por ponto; no último, ${dinheiro(ultima / 100)}. `
+      + `A razão entre os dois é de ${(primeira / Math.max(1, ultima)).toLocaleString('pt-BR', {
+        maximumFractionDigits: 1,
+      })} vezes: no fim da faixa quase toda linha já está com o cv declarado abaixo do `
+      + 'teto, e subi-lo mais deixa de alcançar linha nova. "Meio ponto de teto" não é '
+      + 'um valor; é um valor por ponto de partida.',
+    ], 'aviso'),
   ]);
 }

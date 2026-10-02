@@ -397,6 +397,7 @@ body {
 
 .valor-barra { font-size: 9.5px; fill: var(--tinta-fraca); font-family: var(--mono); }
 .valor-dentro { fill: #fff; }
+.marca-dentro { fill: #fff; font-weight: 600; }
 
 /* --------------------------------------------------------------- controles */
 
