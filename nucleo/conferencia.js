@@ -60,7 +60,8 @@ const rotuloAgr = {
  */
 export function confere(carga, publicado = null) {
   const {
-    modelo, p26, p27, p27Literal, agregados, veg, piso, arima, oito,
+    modelo, p26, p27, p27Literal, agregados, credito, crescimento,
+    veg, piso, pisoLimpo, arima, oito,
   } = carga;
   const itens = [];
 
@@ -172,6 +173,62 @@ export function confere(carga, publicado = null) {
       A('Vegetativo da tela · 2027', publicado.vegetativo2027, veg.ano2027, t.mi);
     }
     if (publicado.piso2026) A('Piso · 2026', publicado.piso2026, piso.ano2026, t.mi);
+    if (publicado.piso2027) A('Piso · 2027', publicado.piso2027, piso.ano2027, t.mi);
+    if (publicado.pisoSemIntra2026 && pisoLimpo) {
+      A('Piso sem a intraorçamentária · 2026',
+        publicado.pisoSemIntra2026, pisoLimpo.ano2026, t.mi, 'outra régua');
+    }
+
+    // A abertura por Poder é o quadro de insuficiência, e é o motivo de a leitura
+    // bruta existir. Conferir só o total do Estado deixaria passar exatamente o
+    // que a consulta deixou: sobra de um Poder somada contra falta de outro.
+    for (const [chave, alvo] of Object.entries(publicado.poderes ?? {})) {
+      const g = agregados.porPoder.itens.find((x) => String(x.chave) === String(chave));
+      A(`Poder ${chave} · ${alvo.nome} · projeção de 2026`,
+        alvo.proj26, g ? g.proj26 : 0, t.mi);
+      A(`Poder ${chave} · ${alvo.nome} · dotação`,
+        alvo.dotacao, g ? g.dotacao : 0, t.mi);
+    }
+    if (credito) {
+      if (publicado.creditoBrutoPorPoder) {
+        A('Crédito a abrir · leitura bruta por Poder',
+          publicado.creditoBrutoPorPoder, credito.brutaPorPoder, t.mi);
+      }
+      if (publicado.creditoBrutoPorUnidade) {
+        A('Crédito a abrir · leitura bruta por unidade',
+          publicado.creditoBrutoPorUnidade, credito.brutaPorUnidade, t.mi);
+      }
+      if (publicado.sobraPorPoder) {
+        A('Sobra de quem está coberto, por Poder',
+          publicado.sobraPorPoder, credito.sobraPorPoder, t.mi);
+      }
+      if (publicado.unidadesDescobertas !== undefined) {
+        A('Unidades descobertas',
+          publicado.unidadesDescobertas, credito.descobertosPorUnidade, 0, 'contagem');
+      }
+    }
+    if (crescimento) {
+      if (publicado.crescimento2027) {
+        A('Crescimento de 2027 sobre 2026',
+          publicado.crescimento2027, crescimento.total, t.mi);
+      }
+      if (publicado.efeitoBase2027) {
+        A('Crescimento de 2027 · parcela de efeito-base',
+          publicado.efeitoBase2027, crescimento.efeitoBase, t.mi);
+      }
+      if (publicado.vegetativoDe2027) {
+        A('Crescimento de 2027 · parcela de vegetativo',
+          publicado.vegetativoDe2027, crescimento.vegetativo, t.mi);
+      }
+    }
+    if (arima && publicado.arimaJanela2026) {
+      A('ARIMA · janela de 36 meses · 2026',
+        publicado.arimaJanela2026, arima.janela.total2026, t.mi, 'só comparação');
+    }
+    if (arima && publicado.arimaInteira2026) {
+      A('ARIMA · série inteira · 2026',
+        publicado.arimaInteira2026, arima.inteira.total2026, t.mi, 'só comparação');
+    }
     if (arima && publicado.arimaJanela2027) {
       A('ARIMA · janela de 36 meses · 2027',
         publicado.arimaJanela2027, arima.janela.total2027, t.mi, 'só comparação');

@@ -926,17 +926,32 @@ export function geraModelo(opcoes = {}) {
   // Reparte por Poder segundo os alvos e, dentro do Poder, pela massa projetada
   // de cada linha. É o que produz o quadro de insuficiência: alguns Poderes
   // descobertos, outros com sobra, e a sobra que não pode cobrir a falta alheia.
+  // A cobertura varia POR UNIDADE dentro do Poder, e não de modo uniforme. Sem
+  // essa dispersão a leitura por unidade repete exatamente a leitura por Poder:
+  // todas as unidades de um Poder teriam a mesma razão entre dotação e projeção, e
+  // ou todas estariam descobertas ou nenhuma estaria. O painel existe em parte para
+  // mostrar que a leitura mais fina revela mais falta que a leitura agregada, e isso
+  // exige que a dotação de cada unidade tenha história própria — o que ela tem, na
+  // folha de verdade: cada unidade negociou a sua dotação na lei orçamentária.
   const p = projeta2026(linhas, par);
+  const sorteio = aleatorio(semente + 991);
+  const coberturaDaUo = new Map();
+  for (const L of linhas) {
+    if (!coberturaDaUo.has(L.uo)) coberturaDaUo.set(L.uo, 0.74 + sorteio() * 0.46);
+  }
+
   const massaPoder = new Map();
   for (const L of linhas) {
     const q = poderDaLinha(L);
-    massaPoder.set(q, (massaPoder.get(q) ?? 0) + p.porLinha.get(L.id).ano);
+    const peso = p.porLinha.get(L.id).ano * coberturaDaUo.get(L.uo);
+    massaPoder.set(q, (massaPoder.get(q) ?? 0) + peso);
   }
   for (const L of linhas) {
     const q = poderDaLinha(L);
     const alvo = (DOTACAO_POR_PODER[q] ?? 0) * MI;
     const massa = massaPoder.get(q) ?? 0;
-    L.atual = massa > 0 ? alvo * (p.porLinha.get(L.id).ano / massa) : 0;
+    const peso = p.porLinha.get(L.id).ano * coberturaDaUo.get(L.uo);
+    L.atual = massa > 0 ? alvo * (peso / massa) : 0;
   }
 
   // O marcador é o décimo campo da chave. Ele distingue a linha de mediana da
@@ -954,7 +969,7 @@ export function geraModelo(opcoes = {}) {
       orgaos: Object.fromEntries(ORGAOS.map((o) => [o.codigo, o.nome])),
       unidades: Object.fromEntries(unidades.map((u) => [u.uo, u.nome])),
     },
-    arima: ARIMA,
+    arima: emReais(ARIMA),
     oito: {
       unidades: SERIE_8778.unidades,
       dotacao: SERIE_8778.dotacao * MI,
@@ -982,6 +997,35 @@ export function geraModelo(opcoes = {}) {
       calibracao: relatorio(modelo, pFinal),
       derivados: derivados(modelo, pFinal),
     },
+  };
+}
+
+/**
+ * Converte o bloco do ARIMA de milhões para REAIS.
+ *
+ * `alvos.js` escreve em milhões, porque é a casa em que a especificação foi lida e
+ * digitá-la em reais seria digitar seis zeros por célula. O sistema inteiro
+ * circula em reais, e deixar um bloco em outra escala é exatamente o que faz uma
+ * tolerância de um real virar uma tolerância de um milhão. A conversão fica aqui,
+ * na fronteira entre a especificação e a carga, e é a única.
+ */
+function emReais(arima) {
+  const especificacoes = {};
+  for (const [nome, esp] of Object.entries(arima.especificacoes)) {
+    const porGrupo = {};
+    for (const [grupo, v] of Object.entries(esp.porGrupo)) {
+      porGrupo[grupo] = { total2026: v.total2026 * MI, total2027: v.total2027 * MI };
+    }
+    especificacoes[nome] = { ...esp, porGrupo };
+  }
+  return {
+    especificacoes,
+    backtest: arima.backtest.map((b) => ({
+      ...b,
+      realizado: b.realizado * MI,
+      janela: b.janela * MI,
+      inteira: b.inteira * MI,
+    })),
   };
 }
 
