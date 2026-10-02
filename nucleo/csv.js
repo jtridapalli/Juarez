@@ -70,11 +70,20 @@ export function numeroBr(txt) {
   const s = String(txt).trim().replace(/R\$\s*/i, '').replace(/\s/g, '')
     .replace(/[\u2212\u2013\u2014]/g, '-');
   if (s === '' || s === '-' || s === '—') return null;
-  const temVirgula = s.includes(',');
-  const temPonto = s.includes('.');
+  // Com os dois separadores presentes, o DECIMAL é o que aparece por último e o
+  // outro é de milhar. É a única leitura que não depende de adivinhar a origem do
+  // arquivo: "1.234,56" e "1,234.56" são o mesmo valor escrito em duas convenções,
+  // e assumir sempre a brasileira leria o segundo como 1,23456.
+  const ultimaVirgula = s.lastIndexOf(',');
+  const ultimoPonto = s.lastIndexOf('.');
   let limpo = s;
-  if (temVirgula && temPonto) limpo = s.replace(/\./g, '').replace(',', '.');
-  else if (temVirgula) limpo = s.replace(',', '.');
+  if (ultimaVirgula >= 0 && ultimoPonto >= 0) {
+    limpo = ultimaVirgula > ultimoPonto
+      ? s.replace(/\./g, '').replace(',', '.')
+      : s.replace(/,/g, '');
+  } else if (ultimaVirgula >= 0) {
+    limpo = s.replace(',', '.');
+  }
   const n = Number(limpo);
   return Number.isFinite(n) ? n : null;
 }

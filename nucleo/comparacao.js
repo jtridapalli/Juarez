@@ -205,7 +205,15 @@ export function leBacktest(arima) {
   }));
 }
 
-/** Série longa de 60 meses (2023-01 a 2027-12) a partir do relatório 8778. */
+/**
+ * Série realizada do relatório 8778: 44 meses, de janeiro de 2023 a agosto de 2026.
+ *
+ * Ela PARA em agosto de 2026 porque é liquidação, e não projeção. O exercício de
+ * 2026 vem truncado em oito meses de propósito: completá-lo com os quatro meses
+ * projetados do modelo da DOE misturaria realizado com projetado numa série
+ * rotulada como realizada, que é a forma mais direta de produzir um "histórico" que
+ * confirma a projeção que ele deveria contrastar.
+ */
 export function serieDo8778(oito, linhas, todasAsLinhas) {
   if (!oito) return null;
   const massa = (xs) => xs.reduce((a, L) => a + realizado8(L).reduce((x, y) => x + y, 0), 0);
